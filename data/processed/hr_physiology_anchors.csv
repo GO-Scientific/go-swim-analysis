@@ -1,0 +1,4 @@
+metric,value
+observed_hr_max,208.0
+active_low_hr_proxy,67.0
+lthr_proxy_from_avg_hr_p90,152.85337206775841

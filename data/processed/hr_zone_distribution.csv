@@ -1,0 +1,7 @@
+zone,label,low_ratio,high_ratio,low_bpm,high_bpm,minutes,share,sample_count,lthr_proxy_bpm,workouts_used,samples_used,observed_max_bpm,color,source
+Z1,Z1 Recovery / low,0.0,0.85,0.0,129.9,14855.55,0.346449,156458,152.853,480,452715,208.0,#94a3b8,go-swim-export.json heartRateSamples
+Z2,Z2 Easy aerobic,0.85,0.9,129.9,137.6,4496.9,0.104873,45193,152.853,480,452715,208.0,#38bdf8,go-swim-export.json heartRateSamples
+Z3,Z3 Moderate,0.9,0.95,137.6,145.2,4368.55,0.10188,45314,152.853,480,452715,208.0,#22c55e,go-swim-export.json heartRateSamples
+Z4,Z4 Threshold approach,0.95,1.0,145.2,152.9,3840.73,0.08957,39261,152.853,480,452715,208.0,#facc15,go-swim-export.json heartRateSamples
+Z5,Z5 Above threshold,1.0,1.06,152.9,162.0,6036.68,0.140783,62389,152.853,480,452715,208.0,#fb923c,go-swim-export.json heartRateSamples
+Z6,Z6 Very high / sprint,1.06,,162.0,,9281.03,0.216445,104100,152.853,480,452715,208.0,#ef4444,go-swim-export.json heartRateSamples

@@ -1,0 +1,9 @@
+metric,value,interpretation
+athlete_dob,2009-01-01,Known birth date used to compute workout age.
+min_workout_age_years,15.0,Youngest age represented in the workout file.
+max_workout_age_years,17.05,Oldest age represented in the workout file.
+observed_hr_max,208.0,Highest HR seen in workout summaries.
+age_pred_hr_max_fox_min,203.0,Lowest 220-age estimate across the data window.
+age_pred_hr_max_fox_max,205.0,Highest 220-age estimate across the data window.
+age_pred_hr_max_tanaka_min,196.1,Lowest 208 - 0.7*age estimate across the data window.
+age_pred_hr_max_tanaka_max,197.5,Highest 208 - 0.7*age estimate across the data window.
