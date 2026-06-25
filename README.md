@@ -69,3 +69,7 @@ Create this file locally from your Firebase project settings before running depl
 ```bash
 python -m pip install -r requirements.txt
 ```
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
