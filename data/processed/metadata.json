@@ -1,0 +1,5 @@
+{
+  "appName": "go swim",
+  "exportedAt": "2026-06-18T00:14:02Z",
+  "motionAvailability": "Apple does not expose raw accelerometer or gyroscope samples from workouts recorded by the built-in Apple Watch Workout app through HealthKit. go swim exports all HealthKit workout, heart-rate, event, distance, split, and swim metadata it can read; raw motion samples are empty unless a future recorder captures them directly."
+}
