@@ -43,6 +43,27 @@ python scripts/build_analysis.py
 
 The static app lives under `app/public` and reads generated data from `app/public/data`.
 
+## Apple Watch app build and Firebase deploy
+
+Use this flow for preparing and publishing the web app:
+
+```bash
+cd go-swim-firebase
+npm install
+npx firebase login
+npm run deploy
+```
+
+If you want a local host check before deploying:
+
+```bash
+cd go-swim-firebase
+npm run serve
+```
+
+Deployment requires `go-swim-firebase/public/firebase-config.js` to be present.
+Create this file locally from your Firebase project settings before running deploy.
+
 ## Dependencies
 
 ```bash
