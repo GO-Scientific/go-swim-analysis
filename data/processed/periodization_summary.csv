@@ -1,0 +1,2 @@
+metric,value,label,rolling_4w_load_amplitude,unload_frequency,loading_unloading_alternation,load_variability,missing_data_penalty,weeks_used,phase_rows_used,formula,interpretation
+periodization_score,49.486,Moderate waves,0.826203,0.35514,0.339623,0.411573,0.009346,107,107,"28*rolling_4w_load_amplitude + 22*unload_frequency + 26*loading_unloading_alternation + 24*load_variability - 18*missing_data_penalty, clipped 0-100","Higher values indicate more visible training waves from repeated load changes, unload weeks, and loading/unloading alternation."

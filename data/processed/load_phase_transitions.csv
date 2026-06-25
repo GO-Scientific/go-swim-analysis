@@ -1,0 +1,21 @@
+transition,weeks
+loading -> mixed,13
+recovery -> mixed,12
+recovery -> recovery,11
+mixed -> mixed,11
+mixed -> loading,10
+mixed -> unloading,8
+mixed -> recovery,8
+loading -> loading,7
+unloading -> mixed,5
+unloading -> recovery,4
+recovery -> loading,4
+mixed -> holding,4
+loading -> recovery,2
+holding -> unloading,2
+start -> recovery,1
+unloading -> loading,1
+unloading -> unloading,1
+holding -> holding,1
+holding -> mixed,1
+holding -> recovery,1
