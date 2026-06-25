@@ -1,0 +1,6 @@
+method,anchor,formula,best_use,main_caution
+percent_observed_max,observed_hr_max from workouts,avg_hr / observed_hr_max,Compares workouts to the highest HR actually seen in this dataset.,"Observed max may be lower than true max HR, or one unusual value may set the anchor."
+percent_age_predicted_max_fox,220 - workout_age,avg_hr / (220 - age),Shows how a common age-based max-HR zone shifts as the athlete ages.,Age formulas are broad averages and can be off for an individual athlete.
+percent_age_predicted_max_tanaka,208 - 0.7 * workout_age,avg_hr / (208 - 0.7*age),Gives a second age-based comparison formula for sensitivity checking.,"Still a general estimate, not a measured max HR test."
+age_adjusted_hrr,active low HR proxy to age-predicted max HR,(avg_hr - active_low_hr) / ((220 - age) - active_low_hr),Compares effort relative to an estimated usable HR range.,"Uses active low HR, not true resting HR, so this is a project proxy."
+lthr_proxy_ratio,inferred LTHR proxy from workout data,avg_hr / lthr_proxy,Compares workouts against an athlete-specific threshold-like estimate.,"The threshold is inferred from data, not measured by blood lactate or lab testing."

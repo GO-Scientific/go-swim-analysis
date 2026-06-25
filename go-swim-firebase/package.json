@@ -1,0 +1,16 @@
+{
+  "name": "go-swim-firebase",
+  "private": true,
+  "version": "1.0.0",
+  "description": "go-swim-analysis static web app for Firebase Hosting",
+  "scripts": {
+    "deploy": "npx firebase deploy --only hosting",
+    "serve": "npx firebase serve --only hosting"
+  },
+  "devDependencies": {
+    "firebase-tools": "^13.0.0"
+  },
+  "dependencies": {
+    "firebase": "^11.0.0"
+  }
+}

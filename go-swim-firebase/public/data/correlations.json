@@ -1,0 +1,12 @@
+{
+  "avg_hr_vs_pace_50": -0.454167770341227,
+  "hr90_vs_pace_50": -0.10739678460378205,
+  "rest_ratio_vs_pace_50": -0.5663064501565555,
+  "simple_hr_load_vs_pace_50": -0.4192333183791719,
+  "split_pace_vs_workout_avg_hr": -0.11769934677961108,
+  "split_pace_vs_workout_distance": -0.15409602896805863,
+  "split_pace_vs_workout_rest_ratio": 0.06306434643565847,
+  "workout_distance_vs_avg_hr": 0.4852274150754616,
+  "workout_distance_vs_pace_50": -0.4113273888620279,
+  "workout_distance_vs_rest_ratio": 0.06978989860276685
+}

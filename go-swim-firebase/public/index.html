@@ -1,0 +1,362 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>go swim analysis</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main>
+      <header class="hero">
+        <div>
+          <p class="eyebrow">go swim analysis</p>
+          <h1>Training Patterns</h1>
+        </div>
+        <nav class="top-nav" aria-label="Main">
+          <a href="#/overview" data-view="overview" class="active">Overview</a>
+          <a href="#/training" data-view="training">Training</a>
+          <a href="#/physiology" data-view="physiology">Physiology</a>
+          <a href="#/workouts" data-view="workouts">Workouts</a>
+          <a href="#/races" data-view="races">Races</a>
+          <a href="#/findings" data-view="findings">Findings</a>
+        </nav>
+      </header>
+
+      <section id="view-overview" class="view">
+        <div class="summary-grid" id="summary"></div>
+
+        <section class="grid two">
+          <article>
+            <div class="section-title">
+              <h2>Weekly Load</h2>
+              <span>Distance, active swim, rest</span>
+            </div>
+            <canvas id="weeklyChart" height="180"></canvas>
+          </article>
+
+          <article>
+            <div class="section-title">
+              <h2>Stroke Distribution</h2>
+              <span>Distance by stroke</span>
+            </div>
+            <canvas id="strokeChart" height="180"></canvas>
+          </article>
+        </section>
+
+        <section class="grid two">
+          <article>
+            <div class="section-title">
+              <h2>Correlations</h2>
+              <span>AP Stats lens</span>
+            </div>
+            <div id="correlations" class="correlation-list"></div>
+          </article>
+
+          <article>
+            <div class="section-title">
+              <h2>Fastest Workouts</h2>
+              <span>Seconds per 50 m</span>
+            </div>
+            <div id="fastest" class="workout-list"></div>
+          </article>
+        </section>
+      </section>
+
+      <section id="view-training" class="view hidden">
+        <div class="section-title page-title">
+          <div>
+            <p class="eyebrow">training analysis</p>
+            <h2>Weekly volume, load phases, and training rhythm</h2>
+          </div>
+          <span>Prepared from notebooks 01, 07, and 08</span>
+        </div>
+        <div class="summary-grid" id="training-summary"></div>
+        <section class="grid two">
+          <article>
+            <div class="section-title">
+              <h2>Weekly Distance and Load</h2>
+              <span>Volume vs combined load</span>
+            </div>
+            <canvas id="trainingLoadChart" height="190"></canvas>
+          </article>
+          <article>
+            <div class="section-title">
+              <h2>Training Phase Counts</h2>
+              <span>Loading, mixed, recovery, unloading</span>
+            </div>
+            <canvas id="phaseCountChart" height="190"></canvas>
+          </article>
+        </section>
+        <section class="grid two">
+          <article>
+            <div class="section-title">
+              <h2>Phase Summary</h2>
+              <span>Average load by pattern</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Phase</th><th>Weeks</th><th>Avg Load</th><th>Avg km</th><th>Avg ACR</th></tr></thead>
+                <tbody id="phase-summary-rows"></tbody>
+              </table>
+            </div>
+          </article>
+          <article>
+            <div class="section-title">
+              <h2>Recent Phase Timeline</h2>
+              <span>Latest weeks from prepared data</span>
+            </div>
+            <div id="phase-timeline" class="insight-list"></div>
+          </article>
+        </section>
+      </section>
+
+      <section id="view-physiology" class="view hidden">
+        <div class="section-title page-title">
+          <div>
+            <p class="eyebrow">physiology proxies</p>
+            <h2>LTHR zones, HR load, and response patterns</h2>
+          </div>
+          <span>Training estimates, not clinical measurements</span>
+        </div>
+        <div class="summary-grid" id="physiology-summary"></div>
+        <section class="grid two physiology-layout">
+          <article>
+            <div class="section-title">
+              <h2>Load and HR Context</h2>
+              <span>Combined load, near-max minutes, average HR</span>
+            </div>
+            <canvas id="physiologyLoadChart" height="190"></canvas>
+          </article>
+          <article>
+            <div class="section-title">
+              <h2>HR Zone Distribution</h2>
+              <span>Estimated minutes by LTHR-driven zone</span>
+            </div>
+            <canvas id="hrZoneDistributionChart" height="190"></canvas>
+          </article>
+          <article>
+            <div class="section-title">
+              <h2>HR Transition Metrics</h2>
+              <span>Rise/drop proxies from lap and segment timing</span>
+            </div>
+            <div id="transition-metrics" class="insight-list"></div>
+          </article>
+          <article>
+            <div class="section-title">
+              <h2>LTHR Zone Model</h2>
+              <span>Project default zone interpretation</span>
+            </div>
+            <div id="zone-model" class="zone-model"></div>
+          </article>
+          <article class="physiology-wide">
+            <div class="section-title">
+              <h2>Load-HR Correlations</h2>
+              <span>Strongest full-history weekly relationships</span>
+            </div>
+            <div id="load-hr-correlations" class="correlation-list"></div>
+          </article>
+        </section>
+      </section>
+
+      <section id="view-workouts" class="view hidden">
+        <article>
+          <div class="section-title">
+            <h2>Workout History</h2>
+            <span>Tap a workout to open session detail</span>
+          </div>
+          <div id="workout-list-header" class="table-header">
+            <span>Date</span><span>Distance</span><span>Time</span><span>Avg HR</span><span>LTHR Zone</span><span>Source</span>
+          </div>
+          <div id="workout-list" class="workout-list"></div>
+        </article>
+      </section>
+
+      <section id="view-workout-detail" class="view hidden">
+        <a href="#/workouts" class="back-link">&lt;- Back to workouts</a>
+        <article>
+          <div class="section-title">
+            <h2 id="workout-detail-title">Workout Details</h2>
+            <span id="workout-detail-subtitle"></span>
+          </div>
+          <div class="summary-grid" id="workout-detail-summary"></div>
+          <div class="grid two">
+            <article>
+              <div class="section-title">
+                <h2>Split Pace Trend</h2>
+                <span>50 m pace by split</span>
+              </div>
+              <canvas id="splitPaceChart" height="170"></canvas>
+            </article>
+            <article>
+              <div class="section-title">
+                <h2>Heart Rate Trend</h2>
+                <span>Workout samples</span>
+              </div>
+              <canvas id="hrSampleChart" height="170"></canvas>
+            </article>
+          </div>
+
+          <article>
+            <div class="section-title">
+              <h2>Split Points</h2>
+              <span>By cumulative distance</span>
+            </div>
+            <div id="split-table" class="table-wrap">
+              <table>
+                <thead><tr><th>Split</th><th>Cumulative m</th><th>Stroke</th><th>Pace (s / 50m)</th></tr></thead>
+                <tbody id="split-rows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article>
+            <div class="section-title">
+              <h2>Stroke Summary</h2>
+              <span>Distance and stroke count by style</span>
+            </div>
+            <div id="stroke-summary-table" class="table-wrap">
+              <table>
+                <thead><tr><th>Stroke</th><th>Distance</th><th>Time</th><th>Strokes</th><th>Pace 50</th></tr></thead>
+                <tbody id="stroke-summary-rows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article>
+            <div class="section-title">
+              <h2>Events</h2>
+              <span>Lap and segment breaks</span>
+            </div>
+            <div id="event-list" class="event-list"></div>
+          </article>
+        </article>
+      </section>
+
+      <section id="view-races" class="view hidden">
+        <div class="race-toolbar">
+          <div>
+            <div class="race-title-row">
+              <p class="eyebrow">race results</p>
+              <button type="button" id="race-legend-open" class="info-button" aria-label="Open race legend">i</button>
+            </div>
+            <h2 id="race-count">Race History</h2>
+          </div>
+          <div class="segmented-control" aria-label="Group races">
+            <button type="button" data-race-group="meet" class="active">Meet</button>
+            <button type="button" data-race-group="stroke">Stroke</button>
+          </div>
+        </div>
+        <div id="race-groups" class="race-groups"></div>
+      </section>
+
+      <section id="view-findings" class="view hidden">
+        <div class="section-title page-title">
+          <div>
+            <p class="eyebrow">analysis findings</p>
+            <h2>Notebook findings, report figures, and full project scope</h2>
+          </div>
+          <span>Connects the web views to the written reports</span>
+        </div>
+        <section class="grid two">
+          <article>
+            <div class="section-title">
+              <h2>Project-Level Findings</h2>
+              <span>Race performance, training load, and physiology context</span>
+            </div>
+            <div id="july-summary" class="insight-list"></div>
+          </article>
+          <article>
+            <div class="section-title">
+              <h2>Pre-Race Load and Performance</h2>
+              <span>14-day load vs percent off best</span>
+            </div>
+            <canvas id="raceLoadChart" height="190"></canvas>
+          </article>
+        </section>
+        <section>
+          <div class="section-title">
+            <h2>Report Figures</h2>
+            <span>Each graph includes the short interpretation used in the technical report</span>
+          </div>
+          <div id="figure-gallery" class="figure-gallery"></div>
+        </section>
+      </section>
+    </main>
+
+    <div id="figure-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="figure-modal-title">
+      <div class="modal-panel figure-modal-panel">
+        <button type="button" id="figure-modal-close" class="icon-button" aria-label="Close figure details">x</button>
+        <div class="section-title">
+          <div>
+            <p id="figure-modal-kicker" class="eyebrow">figure detail</p>
+            <h2 id="figure-modal-title">Figure</h2>
+          </div>
+        </div>
+        <img id="figure-modal-image" class="figure-modal-image" src="" alt="">
+        <div id="figure-modal-body" class="figure-modal-body"></div>
+      </div>
+    </div>
+
+    <div id="race-legend-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="race-legend-title">
+      <div class="modal-panel race-legend-panel">
+        <button type="button" id="race-legend-close" class="icon-button" aria-label="Close race legend">x</button>
+        <div class="section-title">
+          <div>
+            <p class="eyebrow">race legend</p>
+            <h2 id="race-legend-title">Race tile colors and badges</h2>
+          </div>
+        </div>
+        <div class="legend-section">
+          <h3>Stroke colors</h3>
+          <div class="stroke-legend-grid">
+            <span><i class="stroke-dot fr"></i>Freestyle</span>
+            <span><i class="stroke-dot fly"></i>Butterfly</span>
+            <span><i class="stroke-dot back"></i>Backstroke</span>
+            <span><i class="stroke-dot breast"></i>Breaststroke</span>
+            <span><i class="stroke-dot im"></i>IM / Other</span>
+          </div>
+        </div>
+        <div class="legend-section">
+          <h3>Badges</h3>
+          <div class="badge-legend-list">
+            <p><span class="race-badge pr">PR</span> Personal record: the absolute fastest known time for that event and course.</p>
+            <p><span class="race-badge sb">SB</span> Season best: the fastest time for that event and course within a Sept 1 to Aug 31 season.</p>
+            <p><span class="race-badge pb">PB</span> Previous best: the fastest known time at the moment the race was swum.</p>
+          </div>
+          <p class="legend-note">Season badges are calculated separately by event and course, so SCY, SCM, and LCM performances are not mixed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="race-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="race-modal-title">
+      <div class="modal-panel">
+        <button type="button" id="race-modal-close" class="icon-button" aria-label="Close race details">x</button>
+        <div class="section-title">
+          <div>
+            <p id="race-modal-kicker" class="eyebrow"></p>
+            <h2 id="race-modal-title">Race Details</h2>
+          </div>
+          <strong id="race-modal-time"></strong>
+        </div>
+        <div id="race-detail-grid" class="detail-grid"></div>
+      </div>
+    </div>
+
+    <nav class="bottom-filter-bar" aria-label="Race filters">
+      <button type="button" data-filter="best"><span>BT</span><small>Best</small></button>
+      <button type="button" data-filter="fr"><span>FR</span><small>Free</small></button>
+      <button type="button" data-filter="fly"><span>FL</span><small>Fly</small></button>
+      <button type="button" data-filter="back"><span>BK</span><small>Back</small></button>
+      <button type="button" data-filter="breast"><span>BR</span><small>Breast</small></button>
+      <button type="button" data-filter="scy"><span>SCY</span><small>25y</small></button>
+      <button type="button" data-filter="lcm"><span>LCM</span><small>50m</small></button>
+      <button type="button" data-filter="current"><span>CS</span><small>Season</small></button>
+    </nav>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="workouts-view.js"></script>
+  </body>
+</html>
+
